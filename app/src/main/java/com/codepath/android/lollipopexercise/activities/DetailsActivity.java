@@ -1,6 +1,7 @@
 package com.codepath.android.lollipopexercise.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,8 @@ import com.codepath.android.lollipopexercise.R;
 import com.codepath.android.lollipopexercise.models.Contact;
 
 public class DetailsActivity extends AppCompatActivity {
+
+    public static final String TAG = "DetailsActivity";
     public static final String EXTRA_CONTACT = "EXTRA_CONTACT";
     private Contact mContact;
     private ImageView ivProfile;
@@ -31,8 +34,9 @@ public class DetailsActivity extends AppCompatActivity {
         vPalette = findViewById(R.id.vPalette);
 
         // Extract contact from bundle
-        mContact = (Contact)getIntent().getExtras().getSerializable(EXTRA_CONTACT);
-
+        mContact = (Contact) getIntent().getExtras().getSerializable(EXTRA_CONTACT);
+        Log.i(TAG, "made it to details: " + mContact.toString());
+        
         // Fill views with data
         Glide.with(DetailsActivity.this).load(mContact.getThumbnailDrawable()).centerCrop().into(ivProfile);
         tvName.setText(mContact.getName());

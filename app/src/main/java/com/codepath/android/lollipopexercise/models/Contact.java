@@ -66,4 +66,10 @@ public class Contact implements Serializable {
 
         return new Contact(contactNames.getString(name), contactThumbnails.getResourceId(thumbnail, R.drawable.contact_one), contactNumbers.getString(number));
     }
+
+    @Override
+    public String toString(){
+        String output = String.format("Name: %s, Number: %s, Thumbnail: %s", this.mName, this.mNumber, this.mThumbnailDrawable);
+        return output;
+    }
 }

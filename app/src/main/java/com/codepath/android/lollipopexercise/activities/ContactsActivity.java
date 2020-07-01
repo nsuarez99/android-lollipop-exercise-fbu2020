@@ -78,7 +78,7 @@ public class ContactsActivity extends AppCompatActivity {
         rvContacts.scrollToPosition(contacts.size() - 1);
 
         //onclicklistener for snackbar
-        View.OnClickListener myOnClickListener = new View.OnClickListener() {
+        View.OnClickListener snackbarOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "undo click working");
@@ -90,7 +90,7 @@ public class ContactsActivity extends AppCompatActivity {
         View parentView = findViewById(R.id.rvContacts);
         //snackbar for undo
         Snackbar.make(parentView, R.string.snackbar_text, Snackbar.LENGTH_LONG)
-                .setAction("Undo", myOnClickListener)
+                .setAction("Undo", snackbarOnClickListener)
                 .show();
     }
 }
