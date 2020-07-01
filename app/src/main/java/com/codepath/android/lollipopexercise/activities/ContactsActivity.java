@@ -1,6 +1,7 @@
 package com.codepath.android.lollipopexercise.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,8 @@ import java.util.List;
 
 
 public class ContactsActivity extends AppCompatActivity {
+
+    private static final String TAG = "ContactsActivity";
     private RecyclerView rvContacts;
     private ContactsAdapter mAdapter;
     private List<Contact> contacts;
@@ -69,21 +72,25 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     public void addNewContact(MenuItem view){
-        Contact newContact = Contact.getRandomContact(ContactsActivity.this);
+        final Contact newContact = Contact.getRandomContact(ContactsActivity.this);
         contacts.add(newContact);
         mAdapter.notifyDataSetChanged();
+        rvContacts.scrollToPosition(contacts.size() - 1);
 
-//        //onclicklistener for snackbar
-//        View.OnClickListener myOnClickListener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(ContactsActivity.this, "it is working", Toast.LENGTH_SHORT);
-//            }
-//        };
-//
-//        //snackbar for undo
-//        Snackbar.make((View) view, R.string.snackbar_text, Snackbar.LENGTH_LONG)
-//                .setAction("Undo", myOnClickListener)
-//                .show();
+        //onclicklistener for snackbar
+        View.OnClickListener myOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "undo click working");
+                contacts.remove(newContact);
+                mAdapter.notifyDataSetChanged();
+            }
+        };
+
+        View parentView = findViewById(R.id.rvContacts);
+        //snackbar for undo
+        Snackbar.make(parentView, R.string.snackbar_text, Snackbar.LENGTH_LONG)
+                .setAction("Undo", myOnClickListener)
+                .show();
     }
 }

@@ -3,6 +3,6 @@
 
     <string name="app_name">Material Design Exercise</string>
     <string name="title_activity_details">DetailsActivity</string>
-    <string name="snackbar_text">SnackBarText</string>
+    <string name="snackbar_text"></string>
 
 </resources>
